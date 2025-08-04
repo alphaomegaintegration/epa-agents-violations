@@ -146,12 +146,53 @@ epa-demo/
 - Compliance assistance documents
 - Real-time Google search integration
 
+## 🚀 Production Deployment
+
+### AWS EC2 / Production Server Deployment
+
+For production deployment on AWS EC2 or any server with a public IP, see the comprehensive [DEPLOYMENT.md](DEPLOYMENT.md) guide.
+
+**Quick Production Setup:**
+
+1. **Clone and configure**:
+```bash
+git clone https://github.com/alphaomegaintegration/epa-agents-violations.git
+cd epa-agents-violations/epa-demo
+cp .env.prod .env
+# Edit .env with your EC2 IP and API keys
+```
+
+2. **Deploy with production config**:
+```bash
+docker-compose -f docker-compose.prod.yml up --build -d
+```
+
+3. **Access your application**:
+   - Frontend: `http://YOUR_EC2_IP`
+   - Backend API: `http://YOUR_EC2_IP:8000`
+
+**Key Production Changes:**
+- Frontend served on port 80 (standard HTTP)
+- CORS configured for your domain/IP
+- Environment-based API URLs
+- Health checks and restart policies
+- Production-optimized Docker setup
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for complete instructions including:
+- EC2 setup and security groups
+- Environment variable configuration
+- SSL/HTTPS setup
+- Troubleshooting guide
+- Monitoring and maintenance
+
 ## 🛡️ Security & Compliance
 
 - Environment variable protection
 - API key security
 - Docker containerization
 - Rate limiting compliance
+- Production CORS configuration
+- Health monitoring and logging
 
 ## 📝 License
 
