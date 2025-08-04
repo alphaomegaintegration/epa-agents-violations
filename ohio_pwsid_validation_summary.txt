@@ -1,0 +1,25 @@
+EPA ECHO API Validation Summary Report
+============================================================
+Validation Date: 2025-07-30 20:05:57
+Total PWSIDs Tested: 24
+Valid Systems Found: 1
+Success Rate: 4.2%
+
+VALID OHIO WATER SYSTEMS FOUND:
+----------------------------------------
+1. PWSID: OH7700001
+   System Name: CLINTON MACHINE PWS
+   Population: 76
+   Location: CLINTON, Unknown County
+   System Type: NTNCWS
+   Status: I
+   Working API Endpoint: https://data.epa.gov/efservice/sdwis.water_system/pwsid/equals/OH7700001/json
+
+RECOMMENDED FOR EPA COMPLIANCE TESTING:
+---------------------------------------------
+Small System (<10k population):
+  Recommended PWSID: OH7700001
+  System: CLINTON MACHINE PWS
+  Population: 76
+
+============================================================

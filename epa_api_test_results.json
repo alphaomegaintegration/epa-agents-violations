@@ -1,0 +1,8 @@
+{
+  "test_timestamp": "2025-07-30T20:13:17.209837",
+  "epa_api_base_url": "https://data.epa.gov/efservice",
+  "target_pwsid": "OH7700001",
+  "system_name": "Clinton Machine PWS",
+  "test_status": "completed",
+  "hybrid_approach": "real_api_with_mock_fallback"
+}

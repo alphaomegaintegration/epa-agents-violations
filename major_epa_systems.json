@@ -1,0 +1,242 @@
+{
+  "OH2504412": {
+    "name": "COLUMBUS PUBLIC WATER SYSTEM",
+    "description": "Major municipal system serving COLUMBUS, OH",
+    "population": 1305946,
+    "type": "CWS",
+    "city": "COLUMBUS",
+    "state": "OH",
+    "epa_region": "05",
+    "category": "major_municipal"
+  },
+  "OH4900712": {
+    "name": "LONDON CITY PWS",
+    "description": "Major municipal system serving COLUMBUS, OH",
+    "population": 10256,
+    "type": "CWS",
+    "city": "COLUMBUS",
+    "state": "OH",
+    "epa_region": "05",
+    "category": "major_municipal"
+  },
+  "OH1801212": {
+    "name": "CLEVELAND PUBLIC WATER SYSTEM",
+    "description": "Major municipal system serving CLEVELAND, OH",
+    "population": 1308955,
+    "type": "CWS",
+    "city": "CLEVELAND",
+    "state": "OH",
+    "epa_region": "05",
+    "category": "major_municipal"
+  },
+  "OH3102612": {
+    "name": "CINCINNATI PUBLIC WATER SYSTEM",
+    "description": "Major municipal system serving CINCINNATI, OH",
+    "population": 750200,
+    "type": "CWS",
+    "city": "CINCINNATI",
+    "state": "OH",
+    "epa_region": "05",
+    "category": "major_municipal"
+  },
+  "OH3101112": {
+    "name": "INDIAN HILL CITY PWS",
+    "description": "Major municipal system serving CINCINNATI, OH",
+    "population": 15000,
+    "type": "CWS",
+    "city": "CINCINNATI",
+    "state": "OH",
+    "epa_region": "05",
+    "category": "major_municipal"
+  },
+  "CA1910067": {
+    "name": "LOS ANGELES-CITY, DEPT. OF WATER & POWER",
+    "description": "Major municipal system serving LOS ANGELES, CA",
+    "population": 3856043,
+    "type": "CWS",
+    "city": "LOS ANGELES",
+    "state": "CA",
+    "epa_region": "09",
+    "category": "major_municipal"
+  },
+  "CA1910146": {
+    "name": "SANTA MONICA-CITY, WATER DIVISION",
+    "description": "Major municipal system serving LOS ANGELES, CA",
+    "population": 89947,
+    "type": "CWS",
+    "city": "LOS ANGELES",
+    "state": "CA",
+    "epa_region": "09",
+    "category": "major_municipal"
+  },
+  "CA1910092": {
+    "name": "MONTEREY PARK-CITY, WATER DEPT.",
+    "description": "Major municipal system serving LOS ANGELES, CA",
+    "population": 62183,
+    "type": "CWS",
+    "city": "LOS ANGELES",
+    "state": "CA",
+    "epa_region": "09",
+    "category": "major_municipal"
+  },
+  "CA3710020": {
+    "name": "SAN DIEGO, CITY OF",
+    "description": "Major municipal system serving SAN DIEGO, CA",
+    "population": 1385379,
+    "type": "CWS",
+    "city": "SAN DIEGO",
+    "state": "CA",
+    "epa_region": "09",
+    "category": "major_municipal"
+  },
+  "CA3710750": {
+    "name": "NAS NORTH ISLAND & NAB CORONADO",
+    "description": "Major municipal system serving SAN DIEGO, CA",
+    "population": 36990,
+    "type": "CWS",
+    "city": "SAN DIEGO",
+    "state": "CA",
+    "epa_region": "09",
+    "category": "major_municipal"
+  },
+  "NY1400443": {
+    "name": "ECWA DIRECT",
+    "description": "Major municipal system serving BUFFALO, NY",
+    "population": 335000,
+    "type": "CWS",
+    "city": "BUFFALO",
+    "state": "NY",
+    "epa_region": "02",
+    "category": "major_municipal"
+  },
+  "NY1400422": {
+    "name": "BUFFALO WATER AUTHORITY",
+    "description": "Major municipal system serving BUFFALO, NY",
+    "population": 276000,
+    "type": "CWS",
+    "city": "BUFFALO",
+    "state": "NY",
+    "epa_region": "02",
+    "category": "major_municipal"
+  },
+  "NY1400399": {
+    "name": "ECWA AMHERST",
+    "description": "Major municipal system serving BUFFALO, NY",
+    "population": 80228,
+    "type": "CWS",
+    "city": "BUFFALO",
+    "state": "NY",
+    "epa_region": "02",
+    "category": "major_municipal"
+  },
+  "TX1010013": {
+    "name": "CITY OF HOUSTON",
+    "description": "Major municipal system serving HOUSTON, TX",
+    "population": 2202531,
+    "type": "CWS",
+    "city": "HOUSTON",
+    "state": "TX",
+    "epa_region": "06",
+    "category": "major_municipal"
+  },
+  "TX1010056": {
+    "name": "CLEAR LAKE CITY WATER AUTHORITY",
+    "description": "Major municipal system serving HOUSTON, TX",
+    "population": 89702,
+    "type": "CWS",
+    "city": "HOUSTON",
+    "state": "TX",
+    "epa_region": "06",
+    "category": "major_municipal"
+  },
+  "TX1010348": {
+    "name": "CITY OF HOUSTON UD 5 - KINGWOOD",
+    "description": "Major municipal system serving HOUSTON, TX",
+    "population": 80073,
+    "type": "CWS",
+    "city": "HOUSTON",
+    "state": "TX",
+    "epa_region": "06",
+    "category": "major_municipal"
+  },
+  "TX0570004": {
+    "name": "DALLAS WATER UTILITY",
+    "description": "Major municipal system serving DALLAS, TX",
+    "population": 1356479,
+    "type": "CWS",
+    "city": "DALLAS",
+    "state": "TX",
+    "epa_region": "06",
+    "category": "major_municipal"
+  },
+  "TX0570061": {
+    "name": "CITY OF UNIVERSITY PARK",
+    "description": "Major municipal system serving DALLAS, TX",
+    "population": 25278,
+    "type": "CWS",
+    "city": "DALLAS",
+    "state": "TX",
+    "epa_region": "06",
+    "category": "major_municipal"
+  },
+  "TX1290043": {
+    "name": "KAUFMAN COUNTY FWSD 1A",
+    "description": "Major municipal system serving DALLAS, TX",
+    "population": 11268,
+    "type": "CWS",
+    "city": "DALLAS",
+    "state": "TX",
+    "epa_region": "06",
+    "category": "major_municipal"
+  },
+  "FL4130871": {
+    "name": "MDWASA - MAIN SYSTEM",
+    "description": "Major municipal system serving MIAMI, FL",
+    "population": 2300000,
+    "type": "CWS",
+    "city": "MIAMI",
+    "state": "FL",
+    "epa_region": "04",
+    "category": "major_municipal"
+  },
+  "FL4131202": {
+    "name": "MDWASA/REX UTILITIES",
+    "description": "Major municipal system serving MIAMI, FL",
+    "population": 45200,
+    "type": "CWS",
+    "city": "MIAMI",
+    "state": "FL",
+    "epa_region": "04",
+    "category": "major_municipal"
+  },
+  "FL6290327": {
+    "name": "CITY OF TAMPA WATER DEPARTMENT",
+    "description": "Major municipal system serving TAMPA, FL",
+    "population": 733886,
+    "type": "CWS",
+    "city": "TAMPA",
+    "state": "FL",
+    "epa_region": "04",
+    "category": "major_municipal"
+  },
+  "FL6290787": {
+    "name": "HCPUD/SOUTH-CENTRAL",
+    "description": "Major municipal system serving TAMPA, FL",
+    "population": 473500,
+    "type": "CWS",
+    "city": "TAMPA",
+    "state": "FL",
+    "epa_region": "04",
+    "category": "major_municipal"
+  },
+  "FL6290388": {
+    "name": "HCPUD/NORTHWEST UTILITIES",
+    "description": "Major municipal system serving TAMPA, FL",
+    "population": 206485,
+    "type": "CWS",
+    "city": "TAMPA",
+    "state": "FL",
+    "epa_region": "04",
+    "category": "major_municipal"
+  }
+}

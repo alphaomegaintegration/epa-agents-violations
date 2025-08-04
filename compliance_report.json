@@ -1,0 +1,213 @@
+{
+  "water_system_info": {
+    "pwsid": "OH7700001",
+    "system_name": "CLINTON MACHINE PWS",
+    "population_served": 76,
+    "system_type": "NTNCWS",
+    "activity_status": "I",
+    "state_code": "OH",
+    "city_name": "CLINTON",
+    "county_name": "Unknown",
+    "owner_type": "P",
+    "data_source": "EPA_API",
+    "api_response_time": 1.287382
+  },
+  "validation_results": {
+    "valid": true,
+    "issues": [],
+    "warnings": [],
+    "quality_score": 100
+  },
+  "violations": {
+    "E.coli": [
+      {
+        "sample_location": "Distribution System",
+        "result": "Present",
+        "mcl": 0,
+        "exceedance_factor": "ACUTE",
+        "collection_time": "10:30",
+        "tier": "Tier 1"
+      }
+    ],
+    "Lead": [
+      {
+        "sample_location": "Home Sample #1",
+        "result": 18.2,
+        "mcl": 15,
+        "exceedance_factor": 1.21,
+        "collection_time": "09:15",
+        "tier": "Tier 2"
+      },
+      {
+        "sample_location": "Home Sample #2",
+        "result": 22.1,
+        "mcl": 15,
+        "exceedance_factor": 1.47,
+        "collection_time": "09:30",
+        "tier": "Tier 2"
+      },
+      {
+        "sample_location": "Home Sample #3",
+        "result": 16.8,
+        "mcl": 15,
+        "exceedance_factor": 1.12,
+        "collection_time": "09:45",
+        "tier": "Tier 2"
+      },
+      {
+        "sample_location": "Home Sample #4",
+        "result": 25.3,
+        "mcl": 15,
+        "exceedance_factor": 1.69,
+        "collection_time": "10:00",
+        "tier": "Tier 2"
+      }
+    ],
+    "Copper": [
+      {
+        "sample_location": "Home Sample #1",
+        "result": 1400.0,
+        "mcl": 1300,
+        "exceedance_factor": 1.08,
+        "collection_time": "09:15",
+        "tier": "Tier 2"
+      },
+      {
+        "sample_location": "Home Sample #2",
+        "result": 2100.0,
+        "mcl": 1300,
+        "exceedance_factor": 1.62,
+        "collection_time": "09:30",
+        "tier": "Tier 2"
+      }
+    ],
+    "PFOA": [
+      {
+        "sample_location": "Treatment Plant Effluent",
+        "result": 8.2,
+        "mcl": 4,
+        "exceedance_factor": 2.05,
+        "collection_time": "08:00",
+        "tier": "Tier 2"
+      }
+    ]
+  },
+  "severity_assessment": {
+    "E.coli": "CRITICAL - Immediate public health risk",
+    "Lead": "MODERATE - Health concern",
+    "Copper": "HIGH - Corrosion control failure",
+    "PFOA": "HIGH - Persistent contamination"
+  },
+  "federal_report": {
+    "report_type": "Drinking Water Violation Report",
+    "pwsid": "OH7700001",
+    "water_system_name": "CLINTON MACHINE PWS",
+    "population_served": 76,
+    "system_type": "NTNCWS",
+    "location": "CLINTON, Unknown County, OH",
+    "report_date": "2025-07-30",
+    "violation_date": "2025-01-15",
+    "violations": [
+      {
+        "parameter": "E.coli",
+        "violation_type": "MCL/AL Exceedance",
+        "tier": "Tier 1",
+        "sample_location": "Distribution System",
+        "result": "Present",
+        "mcl_al": 0,
+        "exceedance_factor": "ACUTE",
+        "severity": "CRITICAL - Immediate public health risk"
+      },
+      {
+        "parameter": "Lead",
+        "violation_type": "MCL/AL Exceedance",
+        "tier": "Tier 2",
+        "sample_location": "Home Sample #1",
+        "result": 18.2,
+        "mcl_al": 15,
+        "exceedance_factor": 1.21,
+        "severity": "MODERATE - Health concern"
+      },
+      {
+        "parameter": "Lead",
+        "violation_type": "MCL/AL Exceedance",
+        "tier": "Tier 2",
+        "sample_location": "Home Sample #2",
+        "result": 22.1,
+        "mcl_al": 15,
+        "exceedance_factor": 1.47,
+        "severity": "MODERATE - Health concern"
+      },
+      {
+        "parameter": "Lead",
+        "violation_type": "MCL/AL Exceedance",
+        "tier": "Tier 2",
+        "sample_location": "Home Sample #3",
+        "result": 16.8,
+        "mcl_al": 15,
+        "exceedance_factor": 1.12,
+        "severity": "MODERATE - Health concern"
+      },
+      {
+        "parameter": "Lead",
+        "violation_type": "MCL/AL Exceedance",
+        "tier": "Tier 2",
+        "sample_location": "Home Sample #4",
+        "result": 25.3,
+        "mcl_al": 15,
+        "exceedance_factor": 1.69,
+        "severity": "MODERATE - Health concern"
+      },
+      {
+        "parameter": "Copper",
+        "violation_type": "MCL/AL Exceedance",
+        "tier": "Tier 2",
+        "sample_location": "Home Sample #1",
+        "result": 1400.0,
+        "mcl_al": 1300,
+        "exceedance_factor": 1.08,
+        "severity": "HIGH - Corrosion control failure"
+      },
+      {
+        "parameter": "Copper",
+        "violation_type": "MCL/AL Exceedance",
+        "tier": "Tier 2",
+        "sample_location": "Home Sample #2",
+        "result": 2100.0,
+        "mcl_al": 1300,
+        "exceedance_factor": 1.62,
+        "severity": "HIGH - Corrosion control failure"
+      },
+      {
+        "parameter": "PFOA",
+        "violation_type": "MCL/AL Exceedance",
+        "tier": "Tier 2",
+        "sample_location": "Treatment Plant Effluent",
+        "result": 8.2,
+        "mcl_al": 4,
+        "exceedance_factor": 2.05,
+        "severity": "HIGH - Persistent contamination"
+      }
+    ],
+    "immediate_actions_required": [
+      "Issue boil water advisory within 24 hours",
+      "Collect repeat samples within 24 hours",
+      "Notify state regulatory agency immediately",
+      "Implement emergency disinfection protocols",
+      "Optimize corrosion control treatment",
+      "Conduct follow-up monitoring",
+      "Public notification within 30 days",
+      "Evaluate treatment options",
+      "Investigate contamination sources",
+      "Public notification within 30 days"
+    ],
+    "long_term_actions": [
+      "Submit corrective action plan within 30 days",
+      "Implement enhanced monitoring program",
+      "Conduct system-wide evaluation",
+      "Submit quarterly compliance reports",
+      "Maintain public notification requirements"
+    ],
+    "system_data_source": "EPA_API"
+  }
+}

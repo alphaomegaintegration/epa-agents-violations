@@ -1,0 +1,23 @@
+{
+  "Lead": {
+    "action_level": 15,
+    "mclg": 0,
+    "units": "ppb",
+    "regulation": "40 CFR 141.80",
+    "violation_type": "action_level_exceedance"
+  },
+  "Copper": {
+    "action_level": 1300,
+    "mclg": 1300,
+    "units": "ppb", 
+    "regulation": "40 CFR 141.80"
+  },
+  "E.coli": {
+    "mcl": 0,
+    "mclg": 0,
+    "units": "presence/absence",
+    "regulation": "40 CFR 141.63",
+    "violation_type": "acute",
+    "notification_tier": "Tier 1"
+  }
+}

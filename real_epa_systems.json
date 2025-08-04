@@ -1,0 +1,112 @@
+{
+  "IN2760917": {
+    "name": "WALDEN WOODS COMM. ASSOC. (WELL 1)-GREEN",
+    "description": "TNCWS serving WAUSEON",
+    "population": 200,
+    "type": "TNCWS",
+    "city": "WAUSEON",
+    "state": "OH",
+    "epa_region": "05",
+    "source_type": "GW",
+    "owner_type": "P"
+  },
+  "IN5218003": {
+    "name": "COUNTRY ACRES MOBILE HOME PARK",
+    "description": "CWS serving CINCINNATI",
+    "population": 150,
+    "type": "CWS",
+    "city": "CINCINNATI",
+    "state": "OH",
+    "epa_region": "05",
+    "source_type": "GW",
+    "owner_type": "P"
+  },
+  "MT0000851": {
+    "name": "TRAVEL CENTERS OF AMERICA",
+    "description": "TNCWS serving WESTLAKE",
+    "population": 1120,
+    "type": "TNCWS",
+    "city": "WESTLAKE",
+    "state": "OH",
+    "epa_region": "08",
+    "source_type": "GW",
+    "owner_type": "P"
+  },
+  "090600054": {
+    "name": "Santa Ysabel Enterprise System",
+    "description": "TNCWS serving Santa Ysabel",
+    "population": 205,
+    "type": "TNCWS",
+    "city": "Santa Ysabel",
+    "state": "CA",
+    "epa_region": "09",
+    "source_type": "GW",
+    "owner_type": "N"
+  },
+  "090600039": {
+    "name": "Desert Rose MHP",
+    "description": "CWS serving Coachella",
+    "population": 30,
+    "type": "CWS",
+    "city": "Coachella",
+    "state": "CA",
+    "epa_region": "09",
+    "source_type": "GW",
+    "owner_type": "P"
+  },
+  "090605160": {
+    "name": "DD Mobile Home Park",
+    "description": "CWS serving Thermal",
+    "population": 300,
+    "type": "CWS",
+    "city": "Thermal",
+    "state": "CA",
+    "epa_region": "09",
+    "source_type": "GW",
+    "owner_type": "P"
+  },
+  "CT1050364": {
+    "name": "85 HALLS ROAD",
+    "description": "TNCWS serving NEW PALTZ",
+    "population": 25,
+    "type": "TNCWS",
+    "city": "NEW PALTZ",
+    "state": "NY",
+    "epa_region": "01",
+    "source_type": "GW",
+    "owner_type": "P"
+  },
+  "CT0051011": {
+    "name": "FOXRIDGE APARTMENTS-WELL 1",
+    "description": "CWS serving STATEN ISLAND",
+    "population": 25,
+    "type": "CWS",
+    "city": "STATEN ISLAND",
+    "state": "NY",
+    "epa_region": "01",
+    "source_type": "GW",
+    "owner_type": "P"
+  },
+  "CT0181222": {
+    "name": "SHELL FACILITY",
+    "description": "TNCWS serving NEW PALTZ",
+    "population": 30,
+    "type": "TNCWS",
+    "city": "NEW PALTZ",
+    "state": "NY",
+    "epa_region": "01",
+    "source_type": "GW",
+    "owner_type": "P"
+  },
+  "CO0226175": {
+    "name": "CABINS ON SPRING CREEK SUBDIVISION",
+    "description": "TNCWS serving KATY",
+    "population": 15,
+    "type": "TNCWS",
+    "city": "KATY",
+    "state": "TX",
+    "epa_region": "08",
+    "source_type": "SW",
+    "owner_type": "P"
+  }
+}

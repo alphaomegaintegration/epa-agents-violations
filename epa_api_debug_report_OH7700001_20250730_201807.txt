@@ -1,0 +1,72 @@
+EPA API Debug Report
+============================================================
+PWSID: OH7700001
+Debug Timestamp: 2025-07-30T20:17:56.556698
+Total Endpoints Tested: 6
+Successful Endpoints: 2
+Failed Endpoints: 5
+Success Rate: 33.3%
+Data Found: Yes
+
+SUCCESSFUL ENDPOINTS:
+------------------------------
+✅ https://data.epa.gov/efservice/sdwis.water_system/pwsid/equals/OH7700001/json
+✅ https://data.epa.gov/efservice/sdwis.water_system/pwsid/equals/OH7700001/json
+
+SAMPLE SUCCESSFUL RESPONSE:
+-----------------------------------
+Endpoint: https://data.epa.gov/efservice/sdwis.water_system/pwsid/equals/OH7700001/json
+Record Type: <class 'dict'>
+Field Count: 45
+
+Key Fields:
+
+FAILED ENDPOINTS:
+-------------------------
+❌ https://data.epa.gov/efservice/SDWIS.WATER_SYSTEM/PWSID/EQUALS/OH7700001/JSON
+❌ https://data.epa.gov/efservice/sdwis_water_system/pwsid/equals/OH7700001/json
+❌ https://data.epa.gov/efservice/SDWIS_WATER_SYSTEM/PWSID/EQUALS/OH7700001/JSON
+❌ https://data.epa.gov/efservice/water_system/pwsid/equals/OH7700001/json
+❌ https://data.epa.gov/efservice/WATER_SYSTEM/PWSID/EQUALS/OH7700001/JSON
+
+DETAILED ENDPOINT RESULTS:
+-----------------------------------
+
+1. https://data.epa.gov/efservice/sdwis.water_system/pwsid/equals/OH7700001/json
+   Status: success
+   HTTP Code: 200
+   Response Time: 1.483s
+   Content Length: 1372 bytes
+
+2. https://data.epa.gov/efservice/SDWIS.WATER_SYSTEM/PWSID/EQUALS/OH7700001/JSON
+   Status: http_error
+   HTTP Code: 500
+   Response Time: 1.883s
+   Content Length: 77 bytes
+   Error: HTTP 500
+
+3. https://data.epa.gov/efservice/sdwis_water_system/pwsid/equals/OH7700001/json
+   Status: not_found
+   HTTP Code: 404
+   Response Time: 2.201s
+   Content Length: 83 bytes
+
+4. https://data.epa.gov/efservice/SDWIS_WATER_SYSTEM/PWSID/EQUALS/OH7700001/JSON
+   Status: not_found
+   HTTP Code: 404
+   Response Time: 0.947s
+   Content Length: 83 bytes
+
+5. https://data.epa.gov/efservice/water_system/pwsid/equals/OH7700001/json
+   Status: empty
+   HTTP Code: 200
+   Response Time: 0.941s
+   Content Length: 2 bytes
+
+6. https://data.epa.gov/efservice/WATER_SYSTEM/PWSID/EQUALS/OH7700001/JSON
+   Status: empty
+   HTTP Code: 200
+   Response Time: 0.875s
+   Content Length: 2 bytes
+
+============================================================

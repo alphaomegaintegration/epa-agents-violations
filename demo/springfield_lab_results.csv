@@ -1,0 +1,10 @@
+PWSID,Sample_Date,Parameter,Result,Units,MCL,Detection_Limit,Lab_Cert_Number,Sample_Location,Collection_Time,Water_System_Name
+OH7700001,2025-01-15,E.coli,Present,CFU/100mL,0,1.0,12345,Distribution System,10:30,Clinton Machine PWS
+OH7700001,2025-01-15,Lead,18.2,ppb,15,1.0,12345,Home Sample #1,09:15,Clinton Machine PWS
+OH7700001,2025-01-15,Lead,22.1,ppb,15,1.0,12345,Home Sample #2,09:30,Clinton Machine PWS
+OH7700001,2025-01-15,Lead,16.8,ppb,15,1.0,12345,Home Sample #3,09:45,Clinton Machine PWS
+OH7700001,2025-01-15,Lead,25.3,ppb,15,1.0,12345,Home Sample #4,10:00,Clinton Machine PWS
+OH7700001,2025-01-15,Lead,12.1,ppb,15,1.0,12345,Home Sample #5,10:15,Clinton Machine PWS
+OH7700001,2025-01-15,Copper,1400,ppb,1300,50,12345,Home Sample #1,09:15,Clinton Machine PWS
+OH7700001,2025-01-15,Copper,2100,ppb,1300,50,12345,Home Sample #2,09:30,Clinton Machine PWS
+OH7700001,2025-01-15,PFOA,8.2,ng/L,4,1.0,12345,Treatment Plant Effluent,08:00,Clinton Machine PWS

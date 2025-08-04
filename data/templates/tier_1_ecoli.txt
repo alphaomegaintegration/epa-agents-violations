@@ -1,0 +1,14 @@
+URGENT DRINKING WATER NOTICE
+
+E.coli bacteria have been found in your drinking water system. E.coli are bacteria whose presence indicates that the water may be contaminated with human or animal wastes.
+
+IMMEDIATE ACTIONS:
+- Boil all water for 1 minute before drinking, cooking, or brushing teeth
+- Use bottled water for drinking if available
+- Avoid swallowing water while bathing
+
+The water system is taking immediate corrective action including enhanced disinfection and system flushing. We will notify you when tests confirm the water is safe to drink.
+
+Contact: {contact_info}
+System: {system_name}
+Date: {date}
