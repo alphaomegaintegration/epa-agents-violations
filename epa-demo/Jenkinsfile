@@ -37,6 +37,8 @@ pipeline {
       post {
         always {
           recordIssues(
+            id: 'grype-backend',
+            name: 'Grype Backend Scan',
             tools: [grype()],
             aggregatingResults: true,
             ignoreQualityGate: true,
@@ -63,6 +65,8 @@ pipeline {
       post {
         always {
           recordIssues(
+            id: 'grype-frontend',
+            name: 'Grype Frontend Scan',
             tools: [grype()],
             aggregatingResults: true,
             ignoreQualityGate: true,
