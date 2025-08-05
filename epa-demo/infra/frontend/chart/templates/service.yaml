@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "frontend.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     app: {{ include "frontend.name" . }}
     component: epa-frontend
