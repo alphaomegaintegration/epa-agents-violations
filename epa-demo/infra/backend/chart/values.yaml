@@ -1,0 +1,31 @@
+replicaCount: 2
+
+aws_iam_role_arn: STACK_NAME-backend-role
+
+image:
+  repository: AWS_ACCT_ID.dkr.ecr.us-east-1.amazonaws.com/STACK_NAME-dev-backend
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 8000
+
+secrets:
+  anthropicApiKey: ""
+  serpApiKey: ""
+
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "250m"
+  limits:
+    memory: "1Gi"
+    cpu: "500m"
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+env:
+  LOG_LEVEL: "INFO"
