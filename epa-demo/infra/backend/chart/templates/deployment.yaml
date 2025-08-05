@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-backend
+  name: {{ include "backend.fullname" . }}
   labels:
-    app: {{ .Release.Name }}-backend
+    app: {{ include "backend.name" . }}
     component: epa-backend
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-backend
+      app: {{ include "backend.name" . }}
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-backend
+        app: {{ include "backend.name" . }}
         component: epa-backend
     spec:
-      serviceAccountName: {{ .Release.Name }}-backend
+      serviceAccountName: {{ include "backend.fullname" . }}
       containers:
         - name: epa-backend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -49,20 +49,31 @@ spec:
           env:
             - name: PORT
               value: "{{ .Values.service.port }}"
-            {{- if .Values.secrets.anthropicApiKey }}
             - name: ANTHROPIC_API_KEY
-              value: "{{ .Values.secrets.anthropicApiKey }}"
-            {{- end }}
-            {{- if .Values.secrets.serpApiKey }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "backend.fullname" . }}-secrets
+                  key: anthropic-api-key
             - name: SERP_API_KEY
-              value: "{{ .Values.secrets.serpApiKey }}"
-            {{- end }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "backend.fullname" . }}-secrets
+                  key: serp-api-key
             {{- range $key, $value := .Values.env }}
             - name: {{ $key }}
               value: "{{ $value }}"
             {{- end }}
+          volumeMounts:
+            - name: epa-violations-data
+              mountPath: /app/real_epa_violations_20250731_144819.json
+              subPath: real_epa_violations_20250731_144819.json
+              readOnly: true
           {{- if .Values.resources }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
+      volumes:
+        - name: epa-violations-data
+          configMap:
+            name: {{ include "backend.fullname" . }}-epa-data
       restartPolicy: Always

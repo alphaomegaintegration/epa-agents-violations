@@ -38,8 +38,8 @@ resource "kubectl_manifest" "frontend" {
             type: ClusterIP
             port: 80
           env:
-            REACT_APP_API_BASE: "http://epa-backend-backend.${var.environment}.svc.cluster.local:8000"
-            REACT_APP_WS_URL: "ws://epa-backend-backend.${var.environment}.svc.cluster.local:8000/ws"
+            REACT_APP_API_BASE: "https://epa-api.${var.environment}.${local.challenge_domain}"
+            REACT_APP_WS_URL: "wss://epa-api.${var.environment}.${local.challenge_domain}/ws"
           ingress:
             enabled: true
             className: alb

@@ -19,4 +19,11 @@ locals {
   }
 
   eks_oidc_provider_arn = data.terraform_remote_state.eks_state.outputs.oidc_provider_arn
+  challenge_domain      = data.terraform_remote_state.base_state.outputs.challenge_domain
+  environment_certificate_arns = {
+    dev  = data.terraform_remote_state.eks_addons.outputs.dev_cert_arn
+    stg  = data.terraform_remote_state.eks_addons.outputs.stg_cert_arn
+    prod = data.terraform_remote_state.eks_addons.outputs.prod_cert_arn
+  }
+  certificate_arn = lookup(local.environment_certificate_arns, var.environment)
 }

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-epa-data
+  name: {{ include "backend.fullname" . }}-epa-data
   labels:
-    app: {{ .Release.Name }}-backend
+    app: {{ include "backend.name" . }}
     component: epa-backend
 data:
   real_epa_violations_20250731_144819.json: |

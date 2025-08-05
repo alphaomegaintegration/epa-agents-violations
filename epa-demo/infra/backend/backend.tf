@@ -62,6 +62,28 @@ resource "kubectl_manifest" "app-backend" {
             serpApiKey: "${var.serp_api_key}"
           env:
             LOG_LEVEL: "INFO"
+            ALLOWED_ORIGINS: "https://epa.${var.environment}.${local.challenge_domain}"
+          ingress:
+            enabled: true
+            className: alb
+            annotations:
+              alb.ingress.kubernetes.io/backend-protocol: HTTP
+              alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+              alb.ingress.kubernetes.io/scheme: internet-facing
+              alb.ingress.kubernetes.io/target-type: ip
+              alb.ingress.kubernetes.io/group.name: ${var.environment}
+              kubernetes.io/ingress.class: alb
+              alb.ingress.kubernetes.io/certificate-arn: ${local.certificate_arn}
+              cert-manager.io/cluster-issuer: ${var.cluster_issuer_name}
+            hosts:
+              - host: "epa-api.${var.environment}.${local.challenge_domain}"
+                paths:
+                  - path: /
+                    pathType: Prefix
+            tls:
+              - hosts:
+                  - "epa-api.${var.environment}.${local.challenge_domain}"
+                secretName: "epa-api-tls-secret"
           resources:
             requests:
               memory: "512Mi"

@@ -29,3 +29,20 @@ affinity: {}
 
 env:
   LOG_LEVEL: "INFO"
+  ALLOWED_ORIGINS: "https://epa.dev.example.local,https://epa.stg.example.local,https://epa.prod.example.local"
+
+ingress:
+  enabled: true
+  className: "alb"
+  annotations:
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    kubernetes.io/ingress.class: alb
+  hosts:
+    - host: epa-api.example.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
