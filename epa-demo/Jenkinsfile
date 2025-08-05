@@ -1,0 +1,209 @@
+pipeline {
+  agent {
+    label 'app-build-agent'
+  }
+
+  options {
+    ansiColor('xterm')
+    office365ConnectorWebhooks([[adaptiveCards: true, notifyBackToNormal: true, notifyFailure: true, notifySuccess: true, notifyUnstable: true, url: 'https://prod-190.westus.logic.azure.com:443/workflows/266275fdb33c412cb8a8c8e92a29c3f4/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=0RuZSgByow1qgndO6ej0PC2iNq5QHSI-WDm0RSIljOI']])
+  }
+  
+  environment {
+    DEPLOY_ENVIRONMENT="${BRANCH_NAME == 'main' ? 'prod' : BRANCH_NAME}"
+    DOCKER_IMAGE_REPO="${env.TF_AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com"
+    BACKEND_APP_NAME="${env.TF_NAME}-${env.DEPLOY_ENVIRONMENT}-backend"
+    FRONTEND_APP_NAME="${env.TF_NAME}-${env.DEPLOY_ENVIRONMENT}-frontend"
+    VERSION="${env.BUILD_NUMBER}"
+    LATEST="latest"
+    STATE_BUCKET = "${env.TF_STATE_BUCKET}"
+  }
+
+  stages {
+    stage('Build & Scan Backend Docker Image') {
+      steps {
+        container(name: 'kaniko', shell: '/busybox/sh') {
+          sh """
+            #!/busybox/sh
+            /kaniko/executor \\
+            --cleanup \\
+            --context=dir:///${env.WORKSPACE}/epa-demo/backend \\
+            --dockerfile=Dockerfile \\
+            --tarPath=${env.WORKSPACE}/${env.BACKEND_APP_NAME}-${env.VERSION}.tar \\
+            --no-push
+          """
+        }
+        grypeScan autoInstall: true, repName: "grypeReport_${env.BACKEND_APP_NAME}.txt", scanDest: "docker-archive:${env.WORKSPACE}/${env.BACKEND_APP_NAME}-${env.VERSION}.tar"
+      }
+      post {
+        always {
+          recordIssues(
+            tools: [grype()],
+            aggregatingResults: true,
+            ignoreQualityGate: true,
+          )
+        }
+      }
+    }
+
+    stage('Build & Scan Frontend Docker Image') {
+      steps {
+        container(name: 'kaniko', shell: '/busybox/sh') {
+          sh """
+            #!/busybox/sh
+            /kaniko/executor \\
+            --cleanup \\
+            --context=dir:///${env.WORKSPACE}/epa-demo/frontend \\
+            --dockerfile=Dockerfile \\
+            --tarPath=${env.WORKSPACE}/${env.FRONTEND_APP_NAME}-${env.VERSION}.tar \\
+            --no-push
+          """
+        }
+        grypeScan autoInstall: true, repName: "grypeReport_${env.FRONTEND_APP_NAME}.txt", scanDest: "docker-archive:${env.WORKSPACE}/${env.FRONTEND_APP_NAME}-${env.VERSION}.tar"
+      }
+      post {
+        always {
+          recordIssues(
+            tools: [grype()],
+            aggregatingResults: true,
+            ignoreQualityGate: true,
+          )
+        }
+      }
+    }
+
+    stage('Terraform Scanning') {
+      steps {
+        container('checkov') {
+          sh """
+              # Scan backend infrastructure
+              checkov -d ${env.WORKSPACE}/epa-demo/infra/backend \\
+              -o cli \\
+              -o junitxml \\
+              --soft-fail \\
+              --output-file-path console,backend-results.xml \\
+              --branch ${env.BRANCH_NAME}
+              
+              # Scan frontend infrastructure
+              checkov -d ${env.WORKSPACE}/epa-demo/infra/frontend \\
+              -o cli \\
+              -o junitxml \\
+              --soft-fail \\
+              --output-file-path console,frontend-results.xml \\
+              --branch ${env.BRANCH_NAME}
+          """
+        }
+      }
+      post {
+        always {
+          junit skipMarkingBuildUnstable: true, skipPublishingChecks: true, allowEmptyResults: true, testResults: 'backend-results.xml,frontend-results.xml'
+        }
+      }
+    }
+
+    stage('Deploy Infrastructure') {
+      when {
+        expression { env.BRANCH_NAME ==~ /(dev|stg|main)/ }
+      }
+      steps {
+        container('aws') {
+          dir("${env.WORKSPACE}") {
+            sh "aws s3 cp s3://${env.STATE_BUCKET}/vars.tfvars vars.tfvars"
+          }
+        }
+        container('terraform') {
+          // Deploy Backend Infrastructure
+          dir("${env.WORKSPACE}/epa-demo/infra/backend") {
+            sh """
+              terraform init -reconfigure \\
+              -backend-config=key="us-east-1/applications/epa-demo-backend/terraform-${env.DEPLOY_ENVIRONMENT}.tfstate" \\
+              -backend-config="bucket=${env.STATE_BUCKET}" \\
+              -backend-config="region=us-east-1" \\
+              -no-color
+            """
+            sh """
+              terraform apply -auto-approve \\
+              -var="environment=${env.DEPLOY_ENVIRONMENT}" \\
+              -var="aws_account_id=${env.TF_AWS_ACCOUNT_ID}" \\
+              -var-file=${env.WORKSPACE}/vars.tfvars \\
+              -no-color
+            """
+          }
+          // Deploy Frontend Infrastructure
+          dir("${env.WORKSPACE}/epa-demo/infra/frontend") {
+            sh """
+              terraform init -reconfigure \\
+              -backend-config=key="us-east-1/applications/epa-demo-frontend/terraform-${env.DEPLOY_ENVIRONMENT}.tfstate" \\
+              -backend-config="bucket=${env.STATE_BUCKET}" \\
+              -backend-config="region=us-east-1" \\
+              -no-color
+            """
+            sh """
+              terraform apply -auto-approve \\
+              -var="environment=${env.DEPLOY_ENVIRONMENT}" \\
+              -var="aws_account_id=${env.TF_AWS_ACCOUNT_ID}" \\
+              -var-file=${env.WORKSPACE}/vars.tfvars \\
+              -no-color
+            """
+          }
+        }
+      }
+    }
+
+    stage('Convert and Push Backend Image') {
+      when {
+        expression { env.BRANCH_NAME ==~ /(dev|stg|main)/ }
+      }
+      steps {
+        container('aws') {
+          script {
+            env.ECR_PASSWORD = sh(
+              script: "aws ecr get-login-password --region ${env.AWS_REGION}",
+              returnStdout: true
+            ).trim()
+          }
+        }
+        container('skopeo') {
+          withEnv(["ECR_PASSWORD=${env.ECR_PASSWORD}"]) {
+            sh """
+              # Login to ECR with Skopeo
+              set +x
+              skopeo login --username AWS --password $ECR_PASSWORD ${env.DOCKER_IMAGE_REPO}
+              set -x
+
+              # Convert and re-push the backend image in Docker V2 format
+              skopeo copy --format v2s2 \\
+                docker-archive:${env.WORKSPACE}/${env.BACKEND_APP_NAME}-${env.VERSION}.tar \\
+                docker://${env.DOCKER_IMAGE_REPO}/${env.BACKEND_APP_NAME}:${env.VERSION}
+
+              skopeo copy --format v2s2 \\
+                docker-archive:${env.WORKSPACE}/${env.BACKEND_APP_NAME}-${env.VERSION}.tar \\
+                docker://${env.DOCKER_IMAGE_REPO}/${env.BACKEND_APP_NAME}:${LATEST}
+            """
+          }
+        }
+      }
+    }
+
+    stage('Convert and Push Frontend Image') {
+      when {
+        expression { env.BRANCH_NAME ==~ /(dev|stg|main)/ }
+      }
+      steps {
+        container('skopeo') {
+          withEnv(["ECR_PASSWORD=${env.ECR_PASSWORD}"]) {
+            sh """
+              # Convert and re-push the frontend image in Docker V2 format
+              skopeo copy --format v2s2 \\
+                docker-archive:${env.WORKSPACE}/${env.FRONTEND_APP_NAME}-${env.VERSION}.tar \\
+                docker://${env.DOCKER_IMAGE_REPO}/${env.FRONTEND_APP_NAME}:${env.VERSION}
+
+              skopeo copy --format v2s2 \\
+                docker-archive:${env.WORKSPACE}/${env.FRONTEND_APP_NAME}-${env.VERSION}.tar \\
+                docker://${env.DOCKER_IMAGE_REPO}/${env.FRONTEND_APP_NAME}:${LATEST}
+            """
+          }
+        }
+      }
+    }
+  }
+}
