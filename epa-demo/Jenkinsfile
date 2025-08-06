@@ -17,8 +17,7 @@ pipeline {
     LATEST="latest"
     STATE_BUCKET = "${env.TF_STATE_BUCKET}"
     
-    // Get challenge domain from Jenkins credential
-    CHALLENGE_DOMAIN = credentials('challenge-domain')
+    CHALLENGE_DOMAIN = "nubuilder-dev.aoi-labs.com"
     API_BASE_URL = "https://epa-api.${env.DEPLOY_ENVIRONMENT}.${env.CHALLENGE_DOMAIN}"
     WS_URL = "wss://epa-api.${env.DEPLOY_ENVIRONMENT}.${env.CHALLENGE_DOMAIN}/ws"
   }
