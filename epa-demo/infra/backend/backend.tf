@@ -8,10 +8,6 @@ resource "aws_ecr_repository" "app_repo" {
   force_delete = true
 }
 
-
-
-
-
 module "backend_irsa" {
   source   = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
 
