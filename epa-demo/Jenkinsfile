@@ -106,7 +106,7 @@ pipeline {
 
     stage('Deploy Infrastructure') {
       when {
-        expression { env.BRANCH_NAME ==~ /(dev|stg|main)/ }
+        expression { env.DEPLOY_ENVIRONMENT ==~ /(dev|stg|prod)/ }
       }
       steps {
         container('aws') {
@@ -158,7 +158,7 @@ pipeline {
 
     stage('Convert and Push Backend Image') {
       when {
-        expression { env.BRANCH_NAME ==~ /(dev|stg|main)/ }
+        expression { env.DEPLOY_ENVIRONMENT ==~ /(dev|stg|prod)/ }
       }
       steps {
         container('aws') {
@@ -193,7 +193,7 @@ pipeline {
 
     stage('Convert and Push Frontend Image') {
       when {
-        expression { env.BRANCH_NAME ==~ /(dev|stg|main)/ }
+        expression { env.DEPLOY_ENVIRONMENT ==~ /(dev|stg|prod)/ }
       }
       steps {
         container('skopeo') {
