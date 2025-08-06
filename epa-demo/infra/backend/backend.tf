@@ -30,7 +30,6 @@ resource "kubectl_manifest" "app-backend" {
       helm:
         values: |
           replicaCount: 2
-          aws_iam_role_arn: ${module.backend_irsa.iam_role_arn}
           image:
             repository: ${var.aws_account_id}.dkr.ecr.${var.region}.amazonaws.com/${var.name}-${var.environment}-backend
             tag: latest
