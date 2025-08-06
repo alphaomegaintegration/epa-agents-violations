@@ -24,12 +24,3 @@ data "terraform_remote_state" "tools_state" {
     region = "us-east-1"
   }
 }
-
-data "terraform_remote_state" "form-factory-pdf-schema" {
-  backend = "s3"
-  config = {
-    bucket = var.state_bucket
-    key    = "us-east-1/applications/pdf-schema/terraform-${var.environment}.tfstate"
-    region = "us-east-1"
-  }
-}
