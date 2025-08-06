@@ -90,7 +90,15 @@ app = FastAPI(
     version="1.0.0"
 )
 
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:5173").split(",")
+# Debug environment variable loading
+ALLOWED_ORIGINS_RAW = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:5173")
+ALLOWED_ORIGINS = [origin.strip() for origin in ALLOWED_ORIGINS_RAW.split(",")]
+
+# Log the CORS configuration for debugging
+logger.info(f"🌐 CORS Configuration:")
+logger.info(f"   Raw ALLOWED_ORIGINS env var: '{ALLOWED_ORIGINS_RAW}'")
+logger.info(f"   Parsed ALLOWED_ORIGINS: {ALLOWED_ORIGINS}")
+logger.info(f"   Environment variables available: {list(os.environ.keys())}")
 
 # Enable CORS for React frontend
 app.add_middleware(
