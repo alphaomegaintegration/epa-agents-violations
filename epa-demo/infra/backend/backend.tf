@@ -8,21 +8,6 @@ resource "aws_ecr_repository" "app_repo" {
   force_delete = true
 }
 
-module "backend_irsa" {
-  source   = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-
-  role_name = "${var.name}-backend-irsa-${var.environment}"
-
-  role_policy_arns = {}
-
-  oidc_providers = {
-    main = {
-      provider_arn               = local.eks_oidc_provider_arn
-      namespace_service_accounts = ["${var.environment}:epa-backend"]
-    }
-  }
-}
-
 resource "kubectl_manifest" "app-backend" {
   yaml_body =<<YAML
   apiVersion: argoproj.io/v1alpha1

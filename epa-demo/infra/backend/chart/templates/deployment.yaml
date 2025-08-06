@@ -17,7 +17,6 @@ spec:
         app: {{ include "backend.name" . }}
         component: epa-backend
     spec:
-      serviceAccountName: {{ include "backend.fullname" . }}
       containers:
         - name: epa-backend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
