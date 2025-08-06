@@ -56,8 +56,8 @@ const WS_URL = 'ws://localhost:8000/ws';
 
 **Replace with**:
 ```typescript
-const API_BASE = process.env.REACT_APP_API_BASE || 'http://localhost:8000';
-const WS_URL = process.env.REACT_APP_WS_URL || 'ws://localhost:8000/ws';
+const API_BASE = process.env.VITE_API_BASE || 'http://localhost:8000';
+const WS_URL = process.env.VITE_WS_URL || 'ws://localhost:8000/ws';
 ```
 
 ### 3. Production Docker Compose
@@ -75,8 +75,8 @@ services:
     ports:
       - "80:80"  # Serve on standard HTTP port
     environment:
-      - REACT_APP_API_BASE=${REACT_APP_API_BASE}
-      - REACT_APP_WS_URL=${REACT_APP_WS_URL}
+      - VITE_API_BASE=${VITE_API_BASE}
+      - VITE_WS_URL=${VITE_WS_URL}
     depends_on:
       - backend
     restart: unless-stopped
@@ -116,8 +116,8 @@ ANTHROPIC_API_KEY=your_anthropic_api_key_here
 SERP_API_KEY=your_serpapi_key_here
 
 # Frontend Configuration (replace with your actual IP/domain)
-REACT_APP_API_BASE=http://YOUR_EC2_IP:8000
-REACT_APP_WS_URL=ws://YOUR_EC2_IP:8000/ws
+VITE_API_BASE=http://YOUR_EC2_IP:8000
+VITE_WS_URL=ws://YOUR_EC2_IP:8000/ws
 
 # Backend CORS Configuration (replace with your actual IP/domain)
 ALLOWED_ORIGINS=http://YOUR_EC2_IP,https://YOUR_DOMAIN.com,http://YOUR_EC2_IP:80
@@ -210,8 +210,8 @@ If using a custom domain:
 1. **Point domain to EC2 IP** (DNS A record)
 2. **Update environment variables**:
 ```bash
-REACT_APP_API_BASE=https://api.yourdomain.com
-REACT_APP_WS_URL=wss://api.yourdomain.com/ws
+VITE_API_BASE=https://api.yourdomain.com
+VITE_WS_URL=wss://api.yourdomain.com/ws
 ALLOWED_ORIGINS=https://yourdomain.com,https://www.yourdomain.com
 ```
 
@@ -246,8 +246,8 @@ htop   # Check CPU/memory usage
 ### Common Issues:
 
 1. **CORS Errors**: Check `ALLOWED_ORIGINS` in `.env`
-2. **API Connection Failed**: Verify `REACT_APP_API_BASE` URL
-3. **WebSocket Connection Failed**: Check `REACT_APP_WS_URL`
+2. **API Connection Failed**: Verify `VITE_API_BASE` URL
+3. **WebSocket Connection Failed**: Check `VITE_WS_URL`
 4. **Container Won't Start**: Check `docker-compose logs`
 5. **Out of Memory**: Upgrade to larger instance type
 

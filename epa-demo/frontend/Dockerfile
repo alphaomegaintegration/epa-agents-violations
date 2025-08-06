@@ -3,12 +3,12 @@ FROM node:18-alpine as build
 WORKDIR /app
 
 # Accept build arguments for environment variables
-ARG REACT_APP_API_BASE
-ARG REACT_APP_WS_URL
+ARG VITE_API_BASE
+ARG VITE_WS_URL
 
 # Set environment variables from build args
-ENV REACT_APP_API_BASE=${REACT_APP_API_BASE}
-ENV REACT_APP_WS_URL=${REACT_APP_WS_URL}
+ENV VITE_API_BASE=${VITE_API_BASE}
+ENV VITE_WS_URL=${VITE_WS_URL}
 
 # Copy package files
 COPY package*.json ./
