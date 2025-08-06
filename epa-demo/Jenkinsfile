@@ -16,6 +16,11 @@ pipeline {
     VERSION="${env.BUILD_NUMBER}"
     LATEST="latest"
     STATE_BUCKET = "${env.TF_STATE_BUCKET}"
+    
+    // Get challenge domain from Jenkins credential
+    CHALLENGE_DOMAIN = credentials('challenge-domain')
+    API_BASE_URL = "https://epa-api.${env.DEPLOY_ENVIRONMENT}.${env.CHALLENGE_DOMAIN}"
+    WS_URL = "wss://epa-api.${env.DEPLOY_ENVIRONMENT}.${env.CHALLENGE_DOMAIN}/ws"
   }
 
   stages {
@@ -56,6 +61,8 @@ pipeline {
             --cleanup \\
             --context=dir:///${env.WORKSPACE}/epa-demo/frontend \\
             --dockerfile=Dockerfile \\
+            --build-arg=REACT_APP_API_BASE=${env.API_BASE_URL} \\
+            --build-arg=REACT_APP_WS_URL=${env.WS_URL} \\
             --tarPath=${env.WORKSPACE}/${env.FRONTEND_APP_NAME}-${env.VERSION}.tar \\
             --no-push
           """
