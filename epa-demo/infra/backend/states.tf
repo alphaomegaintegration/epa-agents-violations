@@ -16,15 +16,6 @@ data "terraform_remote_state" "base_state" {
   }
 }
 
-data "terraform_remote_state" "eks_state" {
-  backend = "s3"
-  config = {
-    bucket = var.state_bucket
-    key    = "us-east-1/2-eks/terraform.tfstate"
-    region = "us-east-1"
-  }
-}
-
 data "terraform_remote_state" "eks_addons" {
   backend = "s3"
   config = {
