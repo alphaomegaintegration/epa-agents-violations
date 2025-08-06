@@ -4,8 +4,8 @@ import AgentPanel from './components/AgentPanel';
 import ResultsPanel from './components/ResultsPanel';
 import { AnalysisState, AgentUpdate, AnalysisResults } from './types';
 
-const API_BASE = process.env.REACT_APP_API_BASE || 'http://localhost:8000';
-const WS_URL = process.env.REACT_APP_WS_URL || 'ws://localhost:8000/ws';
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8000';
+const WS_URL = import.meta.env.VITE_WS_URL || 'ws://localhost:8000/ws';
 
 function App() {
   const [analysisState, setAnalysisState] = useState<AnalysisState>({

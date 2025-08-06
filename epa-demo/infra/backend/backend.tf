@@ -42,7 +42,7 @@ resource "kubectl_manifest" "app-backend" {
             serpApiKey: "${var.serp_api_key}"
           env:
             LOG_LEVEL: "INFO"
-            ALLOWED_ORIGINS: "https://epa.${var.environment}.${local.challenge_domain}"
+            ALLOWED_ORIGINS: "https://epa.${var.environment}.${local.challenge_domain},https://epa-api.${var.environment}.${local.challenge_domain}"
           ingress:
             enabled: true
             className: alb
