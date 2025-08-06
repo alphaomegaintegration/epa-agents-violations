@@ -112,6 +112,7 @@ pipeline {
         container('aws') {
           dir("${env.WORKSPACE}") {
             sh "aws s3 cp s3://${env.STATE_BUCKET}/vars.tfvars vars.tfvars"
+            sh "aws s3 cp s3://${env.STATE_BUCKET}/secrets.tfvars secrets.tfvars"
           }
         }
         container('terraform') {
@@ -129,6 +130,7 @@ pipeline {
               -var="environment=${env.DEPLOY_ENVIRONMENT}" \\
               -var="aws_account_id=${env.TF_AWS_ACCOUNT_ID}" \\
               -var-file=${env.WORKSPACE}/vars.tfvars \\
+              -var-file=${env.WORKSPACE}/secrets.tfvars \\
               -no-color
             """
           }
@@ -146,6 +148,7 @@ pipeline {
               -var="environment=${env.DEPLOY_ENVIRONMENT}" \\
               -var="aws_account_id=${env.TF_AWS_ACCOUNT_ID}" \\
               -var-file=${env.WORKSPACE}/vars.tfvars \\
+              -var-file=${env.WORKSPACE}/secrets.tfvars \\
               -no-color
             """
           }
