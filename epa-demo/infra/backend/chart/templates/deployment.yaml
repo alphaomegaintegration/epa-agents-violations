@@ -67,4 +67,13 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
+          volumeMounts:
+            - name: epa-violations-data
+              mountPath: /app/real_epa_violations_20250731_144819.json
+              subPath: real_epa_violations_20250731_144819.json
+              readOnly: true
+      volumes:
+        - name: epa-violations-data
+          configMap:
+            name: {{ include "backend.fullname" . }}-epa-data
       restartPolicy: Always
