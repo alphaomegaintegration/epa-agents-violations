@@ -119,6 +119,7 @@ pipeline {
           dir("${env.WORKSPACE}") {
             sh "aws s3 cp s3://${env.STATE_BUCKET}/vars.tfvars vars.tfvars"
             sh "aws s3 cp s3://${env.STATE_BUCKET}/secrets.tfvars secrets.tfvars"
+            sh "cp ${env.WORKSPACE}/epa-demo/real_epa_violations_20250731_144819.json ${env.WORKSPACE}/epa-demo/infra/backend/chart/"
           }
         }
         container('terraform') {
