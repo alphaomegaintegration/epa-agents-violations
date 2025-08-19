@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { AnalysisResults } from '../types';
+import MapVisualization from './MapVisualization';
 
 interface ResultsPanelProps {
   results: AnalysisResults;
   naturalResponse: string;
   question: string;
+  onNewQuestion?: (question: string) => void;
 }
 
-const ResultsPanel: React.FC<ResultsPanelProps> = ({ results, naturalResponse, question }) => {
-  const [activeTab, setActiveTab] = useState<'briefing' | 'summary' | 'details' | 'raw'>('briefing');
+const ResultsPanel: React.FC<ResultsPanelProps> = ({ results, naturalResponse, question, onNewQuestion }) => {
+  const [activeTab, setActiveTab] = useState<'briefing' | 'summary' | 'details' | 'geographic' | 'raw'>('briefing');
   
   const { summary } = results;
   
@@ -86,6 +88,7 @@ const ResultsPanel: React.FC<ResultsPanelProps> = ({ results, naturalResponse, q
             { id: 'briefing', label: '🏛️ Intel Briefing', icon: '🏛️' },
             { id: 'summary', label: '📊 Summary', icon: '📊' },
             { id: 'details', label: '🔍 Details', icon: '🔍' },
+            { id: 'geographic', label: '🗺️ Geographic', icon: '🗺️' },
             { id: 'raw', label: '📄 Raw Data', icon: '📄' }
           ].map(tab => (
             <button
@@ -339,6 +342,46 @@ const ResultsPanel: React.FC<ResultsPanelProps> = ({ results, naturalResponse, q
                 </div>
               </div>
             )}
+          </div>
+        )}
+
+        {activeTab === 'geographic' && (
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-xl font-semibold text-gray-800">🗺️ Geographic Visualization</h3>
+              <div className="text-sm text-gray-600">
+                Click markers to analyze different water systems
+              </div>
+            </div>
+            
+            <MapVisualization
+              results={results}
+              selectedSystem={results?.epa_data?.pwsid}
+              onSystemClick={(pwsid, systemName) => {
+                if (onNewQuestion) {
+                  const question = `What EPA violations does ${systemName} have?`;
+                  onNewQuestion(question);
+                }
+              }}
+            />
+            
+            <div className="bg-blue-50 border-l-4 border-epa-blue p-4 rounded">
+              <div className="flex">
+                <div className="text-epa-blue text-lg mr-3">ℹ️</div>
+                <div>
+                  <h4 className="font-medium text-epa-blue mb-1">Interactive EPA System Map</h4>
+                  <p className="text-sm text-gray-700">
+                    This map shows the 6 major water systems in our database. Circle sizes represent population served, 
+                    colors indicate risk levels based on EPA violations and enforcement actions. 
+                    Click any system marker to analyze its compliance status.
+                  </p>
+                  <div className="mt-2 text-xs text-gray-600">
+                    <strong>Systems Available:</strong> Los Angeles (3.9M), Houston (2.2M), Miami-Dade (2.3M), 
+                    Cleveland (1.3M), San Diego (1.4M), Clinton Machine (76)
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 

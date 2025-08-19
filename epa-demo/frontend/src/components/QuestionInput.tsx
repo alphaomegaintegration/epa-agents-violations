@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface QuestionInputProps {
   onSubmit: (question: string) => void;
   isAnalyzing: boolean;
+  currentQuestion?: string; // New prop to sync with external question changes
 }
 
 const EXAMPLE_QUESTIONS = [
@@ -15,8 +16,19 @@ const EXAMPLE_QUESTIONS = [
   "Show me lead contamination in major cities"
 ];
 
-const QuestionInput: React.FC<QuestionInputProps> = ({ onSubmit, isAnalyzing }) => {
+const QuestionInput: React.FC<QuestionInputProps> = ({ onSubmit, isAnalyzing, currentQuestion }) => {
   const [question, setQuestion] = useState('');
+
+  // Effect to handle external question changes (from map clicks)
+  useEffect(() => {
+    if (currentQuestion !== undefined) {
+      // Option 1: Show the new question in the input
+      setQuestion(currentQuestion);
+      
+      // Option 2: Clear the input when analysis starts (uncomment below instead)
+      // setQuestion('');
+    }
+  }, [currentQuestion]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

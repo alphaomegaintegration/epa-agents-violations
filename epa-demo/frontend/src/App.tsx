@@ -173,6 +173,7 @@ function App() {
           <QuestionInput 
             onSubmit={handleQuestionSubmit}
             isAnalyzing={analysisState.isAnalyzing}
+            currentQuestion={analysisState.currentQuestion}
           />
         </div>
 
@@ -242,6 +243,7 @@ function App() {
             results={analysisState.results}
             naturalResponse={analysisState.naturalResponse}
             question={analysisState.currentQuestion}
+            onNewQuestion={handleQuestionSubmit}
           />
         )}
 
