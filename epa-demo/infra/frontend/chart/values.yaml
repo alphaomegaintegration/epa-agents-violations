@@ -1,0 +1,41 @@
+replicaCount: 2
+
+image:
+  repository: AWS_ACCT_ID.dkr.ecr.us-east-1.amazonaws.com/STACK_NAME-dev-frontend
+  tag: latest
+  pullPolicy: Always
+  
+service:
+  type: ClusterIP
+  port: 80
+
+ports:
+  containerPort: 80
+
+env:
+  VITE_API_BASE: "https://epa-api.dev.example.local"
+  VITE_WS_URL: "wss://epa-api.dev.example.local/ws"
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "200m"
+
+ingress:
+  enabled: true
+  className: "alb"
+  annotations:
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    kubernetes.io/ingress.class: alb
+  hosts:
+    - host: epa.example.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []

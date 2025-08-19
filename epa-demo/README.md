@@ -55,6 +55,8 @@ uvicorn main:app --reload
 **Frontend:**
 ```bash
 cd frontend
+export VITE_API_BASE=http://localhost:8000
+export VITE_WS_URL=ws://localhost:8000/ws
 npm install
 npm run dev
 ```

@@ -1,0 +1,49 @@
+replicaCount: 2
+
+aws_iam_role_arn: STACK_NAME-backend-role
+
+image:
+  repository: AWS_ACCT_ID.dkr.ecr.us-east-1.amazonaws.com/STACK_NAME-dev-backend
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 8000
+
+secrets:
+  anthropicApiKey: ""
+  serpApiKey: ""
+
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "250m"
+  limits:
+    memory: "1Gi"
+    cpu: "500m"
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+env:
+  LOG_LEVEL: "INFO"
+  ALLOWED_ORIGINS: "https://epa.env.example.local,https://epa-api.env.example.local"
+
+ingress:
+  enabled: true
+  className: "alb"
+  annotations:
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=300
+  hosts:
+    - host: epa-api.example.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
