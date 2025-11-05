@@ -6,6 +6,9 @@ A production-grade EPA compliance intelligence platform combining real governmen
 
 This system provides natural language interface for EPA water quality compliance analysis using real EPA data, AI agents, and current regulatory guidance. It processes actual EPA violations, enforcement actions, and provides comprehensive compliance intelligence briefings.
 
+<img width="397" height="321" alt="ConOps-EPA-RegH2O" src="https://github.com/user-attachments/assets/9e040d1a-cadc-43e6-94c7-60dfec5769fb" />
+
+
 ## 🔧 Architecture
 
 ### Data Sources
@@ -19,6 +22,17 @@ This system provides natural language interface for EPA water quality compliance
 2. **Violation Analyst**: Regulatory violations and enforcement analysis
 3. **Notification Specialist**: Public notification requirements
 4. **Remediation Specialist**: Technical solutions with current EPA guidance
+
+### Multi-Agent System:			
+#### Agent Specializations			
+Agent	Purpose	Data Sources	Key Functions
+Data Validator	Validate EPA data sources	EPA SDWIS API, Historical Data	Validates EPA data sources
+Violation Analyst	Analyze compliance violations	Historical Violations, SDWIS	Analyzes violation records
+Notification Specialist	Assess notification requirements	EPA Regulations, Violation Data	Assesses notification requirements
+Remediation Specialist	Provide technical recommendations	Web Search, Treatment Data	Provides technical recommendations
+
+<img width="723" height="106" alt="image" src="https://github.com/user-attachments/assets/bddd69dc-3550-47be-91fc-48fd67b65d85" />
+
 
 ## 🚀 Quick Start
 
