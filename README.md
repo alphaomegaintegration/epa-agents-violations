@@ -23,14 +23,6 @@ This system provides natural language interface for EPA water quality compliance
 3. **Notification Specialist**: Public notification requirements
 4. **Remediation Specialist**: Technical solutions with current EPA guidance
 
-### Multi-Agent System:			
-#### Agent Specializations			
-Agent	Purpose	Data Sources	Key Functions
-Data Validator	Validate EPA data sources	EPA SDWIS API, Historical Data	Validates EPA data sources
-Violation Analyst	Analyze compliance violations	Historical Violations, SDWIS	Analyzes violation records
-Notification Specialist	Assess notification requirements	EPA Regulations, Violation Data	Assesses notification requirements
-Remediation Specialist	Provide technical recommendations	Web Search, Treatment Data	Provides technical recommendations
-
 <img width="723" height="106" alt="image" src="https://github.com/user-attachments/assets/bddd69dc-3550-47be-91fc-48fd67b65d85" />
 
 
