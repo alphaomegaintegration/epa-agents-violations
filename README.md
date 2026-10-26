@@ -26,6 +26,15 @@ This system provides natural language interface for EPA water quality compliance
 <img width="723" height="106" alt="image" src="https://github.com/user-attachments/assets/bddd69dc-3550-47be-91fc-48fd67b65d85" />
 
 
+## Architecture and code map
+
+**Architecture diagram.** The diagram shows the React app calling the FastAPI backend, which runs the compliance agents against Claude, live EPA data, a cached violation file and SerpAPI guidance search.
+- Source: [`docs/architecture/architecture.json`](docs/architecture/architecture.json) (an [archify](https://github.com/tt-a1i/archify) spec).
+- Rendered view: the `architecture` workflow builds it on every change and uploads `architecture-diagram` (open the latest run under Actions → architecture, download the artifact, open `architecture.html`).
+- Locally: `node <archify>/bin/archify.mjs deliver architecture docs/architecture/architecture.json docs/architecture/architecture.html --quality showcase --open` (or ask Claude Code to use the archify skill). The HTML is gitignored.
+
+**Knowledge graph (graphify).** `graphify-out/GRAPH_REPORT.md` (key concepts and connections) and `graphify-out/graph.html` (clickable graph) are committed ([report](graphify-out/GRAPH_REPORT.md), [graph](graphify-out/graph.html)); `graph.json` is gitignored and rebuilt with [`graphify`](https://github.com/safishamsi/graphify). Rebuild with `graphify update . && graphify cluster-only . --no-label` (code only, no LLM, nothing leaves the machine). The Graphify Labs GitHub App also runs on every push and PR in the org.
+
 ## 🚀 Quick Start
 
 ### Prerequisites

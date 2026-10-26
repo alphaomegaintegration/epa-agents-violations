@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": { "title": "EPA Intelligent Compliance System", "output": "architecture.html", "quality_profile": "showcase" },
+  "layout": { "mode": "grid", "origin": [40, 60], "cols": 5, "gapX": 70, "gapY": 110 },
+  "components": [
+    { "id": "infra", "type": "cloud", "label": "Deploy", "sublabel": "Helm, Terraform, Jenkins", "row": 0, "col": 0 },
+    { "id": "web", "type": "frontend", "label": "React web app", "sublabel": "epa-demo/frontend", "row": 0, "col": 1 },
+    { "id": "api", "type": "backend", "label": "FastAPI backend", "sublabel": "backend/main.py", "row": 0, "col": 2 },
+    { "id": "agents", "type": "backend", "label": "Compliance agents", "sublabel": "intelligent_agentic_system", "row": 0, "col": 3 },
+    { "id": "claude", "type": "external", "label": "Claude API", "sublabel": "agent reasoning", "row": 0, "col": 4 },
+    { "id": "serp", "type": "external", "label": "SerpAPI", "sublabel": "EPA guidance search", "row": 1, "col": 1 },
+    { "id": "data", "type": "database", "label": "Violation data", "sublabel": "real_epa_violations JSON", "row": 1, "col": 2 },
+    { "id": "sdwis", "type": "external", "label": "EPA SDWIS API", "sublabel": "live water systems", "row": 1, "col": 3 }
+  ],
+  "connections": [
+    { "id": "infra-web", "from": "infra", "to": "web", "label": "deploys", "variant": "dashed" },
+    { "id": "web-api", "from": "web", "to": "api", "label": "REST, WebSocket", "variant": "emphasis" },
+    { "id": "api-agents", "from": "api", "to": "agents", "label": "analyze" },
+    { "id": "agents-claude", "from": "agents", "to": "claude", "label": "reason" },
+    { "id": "api-data", "from": "api", "to": "data", "label": "lookup", "fromSide": "bottom", "toSide": "top", "labelDy": 24 },
+    { "id": "agents-sdwis", "from": "agents", "to": "sdwis", "label": "fetch", "fromSide": "bottom", "toSide": "top", "labelDy": 24 },
+    { "id": "api-serp", "from": "api", "to": "serp", "label": "guidance", "variant": "dashed" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Flow", "items": ["Question, intent parse, agent analysis, briefing over WebSocket"] },
+    { "dot": "emerald", "title": "Data", "items": ["Live EPA data plus a cached violation file"] }
+  ]
+}
